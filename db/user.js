@@ -5,5 +5,13 @@ var userSchema = new Schema({
   password: String,
 });
 
+userSchema.static.findByNickname = function(nickname,callback){
+  return this.model('mongoose').find({nickname: nickname},callback);
+}
+
+userSchema.static.checkPassword = function(password,callback){
+  // return this.model('mongoose').find({});
+  return 1;
+}
 // var User = mongodb.mongoose.model("User",userSchema);
 exports.User = mongodb.mongoose.model("User",userSchema);

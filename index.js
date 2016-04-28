@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下
   extended: true
 }));
 
+//主页界面
 app.get("/",function(req,res){
   //res.charset = "UTF-8";
   res.render("index");
@@ -30,6 +31,7 @@ app.get("/index",function(req,res){
   res.render("index");
 });
 
+//注册界面
 app.get("/signin",function(req,res){
   //res.charset = "UTF-8";
   res.render("signin");
@@ -42,6 +44,7 @@ app.post("/signin",function(req,res){
   //生成密码的 md5 值
   var md5 = crypto.createHash('md5');
   var password = md5.update(req.body.password).digest('hex');
+  console.log("passwordHex:"+password);
   //存储数据到数据库
   var newUser = new User({
     nickname: req.body.nickname,
@@ -54,5 +57,15 @@ app.post("/signin",function(req,res){
   //res.render("index");
   
 });
+
+//登录界面
+app.get('/login',function(req,res){
+  
+});
+
+app.post('/login',function(req,res){
+  
+});
+
 http.createServer(app).listen(8888);
 console.log("Server start at port 8888");
