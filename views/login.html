@@ -51,19 +51,28 @@
         }
       });
       
-      // $("button[type='submit']").click(function(){
-      //   if($("#password").val() && $("#nickname").val()){
-      //     console.log("填写完成，正在提交表单！");
-      //     // postData["nickname"] = $("#nickname").val();
-      //     // postData["password"] = $("#password").val();
-      //     // $.post("/signin",{nickname:$("#nickname").val(),password:$("#password").val()},function(response){
-      //     //  // console.log(response);
-      //     // });
-      //     $.post("/signin",{nickname:$("#nickname").val(),password:$("#password").val()});
-      //   }else{
-      //     alert("用户名或者密码没有填写");
-      //   }
-      // });
+      $("button[type='submit']").click(function(){
+        if($("#password").val() && $("#nickname").val()){
+          console.log("填写完成，正在提交表单！");
+          // postData["nickname"] = $("#nickname").val();
+          // postData["password"] = $("#password").val();
+          // $.post("/signin",{nickname:$("#nickname").val(),password:$("#password").val()},function(response){
+          //  // console.log(response);
+          // });
+          $.post("/login",{nickname:$("#nickname").val(),password:$("#password").val()},function(data){
+            console.log("msg: "+data['msg']);
+            if(data['msg']=="0"){
+              alert("该用户名并不存在！请先注册");
+              window.location.href='/signin';//跳到注册的页面
+            }else{
+              alert("用户名验证成功!");
+              // window.location.href='/index';
+            }
+          });
+        }else{
+          alert("用户名或者密码没有填写");
+        }
+      });
     });
   </script>
 </body>
